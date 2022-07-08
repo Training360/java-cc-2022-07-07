@@ -12,7 +12,8 @@ import java.util.*;
 public class Meetup {
 
     @Id
-    @GeneratedValue    @Getter
+    @GeneratedValue
+    @Getter
     private Long id;
 
     @Getter
@@ -64,7 +65,11 @@ public class Meetup {
     }
 
     private boolean placeForAttendees(List<String> newAttendees) {
-        // Set<String> notDuplicatedAttendees = newAttendees.stream().filter(a -> !attendees.contains(a)).collect(Collectors.toSet());
-        return attendees.size() + newAttendees.size() <= limit;
+        long numberOfNotAttendees = newAttendees.stream().filter(this::notAttended).count();
+        return attendees.size() + numberOfNotAttendees <= limit;
+    }
+
+    private boolean notAttended(String a) {
+        return !attendees.contains(a);
     }
 }

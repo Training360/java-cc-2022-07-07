@@ -4,8 +4,6 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class MeetupMain {
-
-
     public static void main(String[] args) {
         EntityManagerFactory factory = Persistence.createEntityManagerFactory("pu");
         MeetupRepo repo = new MeetupRepo(factory);
