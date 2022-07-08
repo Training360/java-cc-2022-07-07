@@ -27,7 +27,7 @@ public class TextFile {
         try (var lines = Files.lines(path)) {
             return findWithMinimalDifference(lines);
         } catch (IOException ioe) {
-            throw new IllegalStateException("Can not read file: " + path, ioe);
+            throw new TextFileReadException("Can not read file", ioe, path);
         }
     }
 
